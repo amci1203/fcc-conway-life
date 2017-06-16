@@ -38,8 +38,6 @@ gulp.task('injectCSS', ['postCSS'], () => {
 gulp.task('default', ['transpileJs', 'postCSS'], () => {
     bs.init({
         notify: false,
-        // workaround for Angular 2 styleUrls loading
-        injectChanges: false,
         files: ['./**/*.{html,htm,js}'],
         watchOptions: { ignored: 'node_modules' },
         server: {
