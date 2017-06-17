@@ -7,8 +7,13 @@
 
 $breakpoint: 800px;
 
-$background: #EEE;
-$color: #333;
+$background: #333;
+$color: #FFF;
+
+$nCols: 70;
+$row-width:  calc(100vw - 400px);
+$max-width: 100vh;
+$square-size: calc($row-width / $nCols);
 
 @define-mixin atMedium {
     @media (min-width: $breakpoint) {
@@ -42,14 +47,14 @@ body {
 .title {
     text-align: center;
     font-weight: 100;
-    font-size: 3.35rem;
+    font-size: 2.65rem;
     margin-top: 1rem;
     margin-bottom: 1.6rem;
-    @mixin atMedium { font-size: 4.35rem }
+    @mixin atMedium { font-size: 3.35rem }
 
     &.subtitle {
-        font-size: 2.45rem;
-        @mixin atMedium { font-size: 3.55rem }
+        font-size: 1.45rem;
+        @mixin atMedium { font-size: 2.55rem }
     }
 }
 
@@ -72,25 +77,73 @@ body {
     &.full-width { width: 100% }
 }
 
-.columns {
+.board {
+    margin: 0 auto;
     @mixin atMedium {
-        display: flex;
-        flex-direction: row;
+        width: $row-width;
+        max-width: $max-width;
+        height: auto;
     }
-}
 
-.group {
-    @mixin isSmall { margin: 3rem 0 }
-    @mixin atMedium {
-        width: 50%;
-        &:first-child { padding-right: 20px }
-        &:last-child { padding-left: 20px }
+    @mixin isSmall {
+        width: 100vw;
     }
-}
 
-textarea {
-    width: 100%;
-    font-size: 1rem;
-    padding: 25px 15px;
-    border-radius: 15px;
+    &__row {
+        margin: 0;
+        padding: 0;
+
+        @mixin atMedium {
+            width: $row-width;
+            height: calc($row-width / $nCols);
+            max-width: $max-width;
+            max-height: calc($max-width / $nCols);
+        }
+
+        @mixin isSmall {
+            width: 100vw;
+            height: calc(100vw / $nCols);
+        }
+    }
+
+    &__square {
+        display: inline-block;
+        border: 1px solid #555;
+
+        @mixin atMedium {
+            width: calc($row-width / $nCols);
+            height: calc($row-width / $nCols);
+            max-width: calc($max-width / $nCols);
+            max-height: calc($max-width / $nCols);
+        }
+
+        &.alive { background: #A55 }
+        &.alive-old { background: #C33 }
+
+        @mixin isSmall {
+            width: calc(100vw / $nCols);
+            height: calc(100vw / $nCols);
+        }
+    }
+
+    &__controls {
+        margin: 0 auto;
+
+        button {
+            position: absolute;
+            border: 2px solid $background;
+            margin: 0;
+            bottom: 0;
+            width: 50%;
+            display: inline-block;
+            text-align: center;
+
+            &:first-child { left: 0 }
+            &:last-child  { left: 50% }
+
+            &:hover {
+                background: color($color b(+ 20));
+            }
+        }
+    }
 }
