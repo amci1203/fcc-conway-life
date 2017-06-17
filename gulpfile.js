@@ -5,13 +5,12 @@ const
     css      = require('gulp-postcss'),
     pre      = require('precss'),
     math     = require('postcss-calc'),
-    moreMath = require('postcss-math'),
     prefixer = require('autoprefixer'),
     bs       = require('browser-sync').create(),
     fallback = require('connect-history-api-fallback'),
     log      = require('connect-logger');
 
-const plugins = [pre, math, moreMath, prefixer];
+const plugins = [pre, math, prefixer];
 
 gulp.task('transpileJs', () => {
     webpack(require('./webpack.config.js'), (err, stats) => {
