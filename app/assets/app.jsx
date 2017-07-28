@@ -174,7 +174,6 @@ class Board extends React.Component {
 
         return (
             <main className='game'>
-                <h1 className='title'>GAME OF LIFE</h1>
                 <div className='board'>{rows}</div>
                 <p className='title subtitle'>Generations: {this.state.generations}</p>
                 <div className='board__controls center-block'>

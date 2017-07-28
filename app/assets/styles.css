@@ -79,6 +79,7 @@ body {
 
 .board {
     margin: 0 auto;
+    margin-top: 1.8rem;
     @mixin atMedium {
         width: $row-width;
         max-width: $max-width;
